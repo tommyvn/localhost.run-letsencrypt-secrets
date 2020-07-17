@@ -1,0 +1,16 @@
+---
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+    commands:
+      - pip install yamllint
+  pre_build:
+    commands:
+      - yamllint *.yml .yamllint .s8/*.yml
+
+artifacts:
+  files:
+    - cloudformation.yml

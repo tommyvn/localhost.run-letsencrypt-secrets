@@ -1,0 +1,29 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: letsencrypt secrets
+Parameters:
+  Environment:
+    Type: 'String'
+    Description: 'Environment'
+
+Resources:
+  LetsEncryptKeySecretsManagerSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: !Sub ${Environment}-letsencrypt-key
+
+  LetsEncryptAccountUrlSecretsManagerSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: !Sub ${Environment}-letsencrypt-account-url
+
+Outputs:
+  LetsEncryptKeySecretsManagerSecretArn:
+    Value: !Ref LetsEncryptKeySecretsManagerSecret
+    Export:
+      Name: !Sub ${Environment}:LetsEncrypt:Key:SecretsManagerSecret:Arn
+
+  LetsEncryptAccountUrlSecretsManagerSecretArn:
+    Value: !Ref LetsEncryptAccountUrlSecretsManagerSecret
+    Export:
+      Name: !Sub ${Environment}:LetsEncrypt:AccountUrl:SecretsManagerSecret:Arn
