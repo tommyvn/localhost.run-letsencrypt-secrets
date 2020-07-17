@@ -1,0 +1,18 @@
+---
+version: 1
+branches:
+  - match: "."
+    match_type: "regex"
+    config:
+      cloudformation:
+        Parameters:
+          - ParameterKey: "Environment"
+            ParameterValueVariable: "base_branch"
+  - match: "master"
+    config:
+      deploy_account_id: 465319404166
+  - match: "dev"
+    config:
+      deploy_account_id: 186067015455
+config:
+  build_account_id: 576195417358
